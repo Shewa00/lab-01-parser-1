@@ -1,75 +1,78 @@
-// Copyright 2018 Your Name <your_email>
-
-#include <json.hpp>
+// Copyright 2019 ARAOvsepyan
+#include "../include/json.hpp"
 
 Json::Json() {}
 
-Json::Json(const std::string &s) {
-    std::string::const_iterator it =s.cbegin();
+Json::Json(const std::vector<std::any>& v) {
+    vec = v;
+}
+
+Json::Json(const std::string & s) {
+    int i = 0;
     std::string key = "", value1 = "";
     std::any value;
-    while (*it != '\n') {
-        if (*it == '"') {
-            ++it;
-            while (*it != '"') {
-                key += *it;
-                ++it;
+    while (s[i] != '\0') {
+        if (s[i] == '"') {
+            ++i;
+            while (s[i] != '"') {
+                key += s[i];
+                ++i;
             }
         }
-        if (*it == ':') {
-            ++it;
-            while (*it == ' ') {
-                ++it;
+        if (s[i] == ':') {
+            ++i;
+            while (s[i] == ' ') {
+                ++i;
             }
-            if (*it == '"') {
-                ++it;
-                while (*it != '"') {
-                    value1 += *it;
-                    ++it;
+            if (s[i] == '"') {
+                ++i;
+                while (s[i] != '"') {
+                    value1 += s[i];
+                    ++i;
                 }
-                obj.insert(std::pair<std::string,
+                object.insert(std::pair<std::string,
                         std::string>(key, value1));
                 key = value1 = "";
             } else {
-                if (*it == '[') {
+                if (s[i] == '[') {
                     std::vector<std::any> v;
-                    while (*it != ']') {
-                        ++it;
-                        while (*it == ' ') {
-                            ++it;
+                    while (s[i] != ']') {
+                        ++i;
+                        while (s[i] == ' ') {
+                            ++i;
                         }
-                        if (isdigit(*it)) {
-                            v.push_back(atof(&(*it)));
-                            while (*it != ',' && *it != ']') {
-                                ++it;
+                        if (isdigit(s[i])) {
+                            v.push_back(atof(&(s[i])));
+                            while (s[i] != ',' && s[i] != ']') {
+                                ++i;
                             }
                         } else {
-                            if (*it == '"') {
-                                ++it;
+                            if (s[i] == '"') {
+                                ++i;
                                 std::string s_arr = "";
-                                while (*it != '"') {
-                                    s_arr += *it;
-                                    ++it;
+                                while (s[i] != '"') {
+                                    s_arr += s[i];
+                                    ++i;
                                 }
                                 v.push_back(s_arr);
                             } else {
-                                if (*it == '[') {
-                                    ++it;
+                                if (s[i] == '[') {
+                                    ++i;
                                     std::string s_mas = "";
-                                    while (*it != ']'){
-                                        s_mas += *it;
-                                        ++it;
+                                    while (s[i] != ']'){
+                                        s_mas += s[i];
+                                        ++i;
                                     }
                                     s_mas += " ";
-                                    ++it;
+                                    ++i;
                                     v.push_back(Json(s_mas));
                                 } else {
-                                    if (*it == '{') {
-                                        ++it;
+                                    if (s[i] == '{') {
+                                        ++i;
                                         std::string str = "";
-                                        while (*it != '}'){
-                                            str += *it;
-                                            ++it;
+                                        while (s[i] != '}'){
+                                            str += s[i];
+                                            ++i;
                                         }
                                         v.push_back(Json(str));
                                     }
@@ -79,58 +82,58 @@ Json::Json(const std::string &s) {
                     }
                     Json temp_arr(v);
                     value = temp_arr;
-                    obj.insert(std::pair<std::string,
+                    object.insert(std::pair<std::string,
                             std::any>(key, value));
                 } else {
-                    if (*it == '{') {
+                    if (s[i] == '{') {
                         std::string temp_s;
-                        while (*it != '}') {
-                            temp_s += *it;
-                            ++it;
+                        while (s[i] != '}') {
+                            temp_s += s[i];
+                            ++i;
                         }
                         temp_s += '}';
                         Json temp(temp_s);
-                        obj.insert(
+                        object.insert(
                                 std::pair<std::string, Json>(key, temp));
                     } else {
-                        if (isdigit(*it)) {
-                            value = atof(&(*it));
-                            obj.insert(
+                        if (isdigit(s[i])) {
+                            value = atof(&(s[i]));
+                            object.insert(
                                     std::pair<std::string, std::any>(key, value));
                         } else {
-                            if (*it == 'f') {
+                            if (s[i] == 'f') {
                                 std::string s_bool = "";
-                                while (*it != ',' && *it != '"' && *it != ' ') {
-                                    s_bool += *it;
-                                    ++it;
+                                while (s[i] != ',' && s[i] != '"' && s[i] != ' ') {
+                                    s_bool += s[i];
+                                    ++i;
                                 }
                                 if (s_bool == "false") {
                                     value = false;
-                                    obj.insert(
+                                    object.insert(
                                             std::pair<std::string, std::any>(key, value));
                                 }
                             } else {
-                                if (*it == 't') {
+                                if (s[i] == 't') {
                                     std::string s_bool = "";
-                                    while (*it != ',') {
-                                        s_bool += *it;
-                                        ++it;
+                                    while (s[i] != ',') {
+                                        s_bool += s[i];
+                                        ++i;
                                     }
                                     if (s_bool == "true") {
                                         value = true;
-                                        obj.insert(
+                                        object.insert(
                                                 std::pair<std::string, std::any>(key, value));
                                     }
                                 } else {
-                                    if (*it == 'n') {
+                                    if (s[i] == 'n') {
                                         std::string s_bool = "";
-                                        while (*it != ',' && *it != ' ' && *it != '"') {
-                                            s_bool += *it;
-                                            ++it;
+                                        while (s[i] != ',' && s[i] != ' ' && s[i] != '"') {
+                                            s_bool += s[i];
+                                            ++i;
                                         }
                                         if (s_bool == "null") {
                                             value = NULL;
-                                            obj.insert(
+                                            object.insert(
                                                     std::pair<std::string, std::any>(key, value));
                                         }
                                     }
@@ -142,28 +145,22 @@ Json::Json(const std::string &s) {
                 key = "";
             }
         }
-        ++it;
+        ++i;
     }
-
-}
-
-
-Json::Json(const std::vector<std::any>& v) {
-    arr = v;
 }
 
 bool Json::is_array() const {
-    return !arr.empty();
+    return !vec.empty();
 }
 
 bool Json::is_object() const{
-    return !obj.empty();
+    return !object.empty();
 }
 
 std::any & Json::operator[](const std::string & key) {
     if (this->is_object()) {
-        for (auto it = obj.begin();
-             it != obj.end(); ++it) {
+        for (auto it = object.begin();
+             it != object.end(); ++it) {
             if (it->first == key) {
                 return it->second;
             }
@@ -174,8 +171,8 @@ std::any & Json::operator[](const std::string & key) {
 
 std::any & Json::operator[](size_t index) {
     if (this->is_array()) {
-        if (index < arr.size()) {
-            return this->arr[index];
+        if (index < vec.size()) {
+            return this->vec[index];
         }
     }
     throw std::runtime_error("it`s not an array");

@@ -1,0 +1,1 @@
+[{"description":"Futures contract for USD/RUB","id":100024,"ticker":"Si-9.15"},{"description":"Futures contract for index RTS","id":100027,"ticker":"RTS-9.15"},{"description":"Futures contract for Gazprom shares","id":100050,"ticker":"GAZP-9.15"}]

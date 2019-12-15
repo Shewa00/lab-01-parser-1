@@ -1,0 +1,1 @@
+C:/.hunter/_Base/e14bc15/76db43b/126423f/Install/lib/libgtest_maind.a C:/.hunter/_Base/e14bc15/76db43b/126423f/Install/lib/libgtestd.a libJsond.a -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

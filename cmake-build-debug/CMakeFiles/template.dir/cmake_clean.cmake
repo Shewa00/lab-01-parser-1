@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/template.dir/sources/json.cpp.o"
-  "libtemplated.a"
+  "CMakeFiles/template.dir/sources/json.cpp.obj"
   "libtemplated.pdb"
+  "libtemplated.a"
 )
 
 # Per-language clean rules from dependency scanning.

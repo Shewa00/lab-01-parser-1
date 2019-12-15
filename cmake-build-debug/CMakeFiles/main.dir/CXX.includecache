@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/lab-01-parser/include/json.hpp
+any
+-
+iostream
+-
+utility
+-
+fstream
+-
+cctype
+-
+string
+-
+map
+-
+vector
+-
+
+D:/lab-01-parser/sources/main.cpp
+iostream
+-
+../include/json.hpp
+D:/lab-01-parser/include/json.hpp
+
