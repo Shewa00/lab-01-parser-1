@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/json.hpp
+any
+-
+iostream
+-
+utility
+-
+fstream
+-
+cctype
+-
+string
+-
+map
+-
+vector
+-
+iterator
+-
+
+/Users/pc/Desktop/CLionProjects/lab-01-parser/sources/json.cpp
+json.hpp
+-
+

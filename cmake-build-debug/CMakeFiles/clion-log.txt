@@ -1,0 +1,9 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/pc/Desktop/CLionProjects/lab-01-parser
+-- [hunter] Calculating Toolchain-SHA1
+-- [hunter] Calculating Config-SHA1
+-- [hunter] HUNTER_ROOT: /Users/pc/.hunter
+-- [hunter] [ Hunter-ID: 70287b1 | Toolchain-ID: b59e805 | Config-ID: b499eae ]
+-- [hunter] GTEST_ROOT: /Users/pc/.hunter/_Base/70287b1/b59e805/b499eae/Install (ver.: 1.8.0-hunter-p11)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/pc/Desktop/CLionProjects/lab-01-parser/cmake-build-debug
