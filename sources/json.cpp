@@ -99,18 +99,21 @@ Json::Json(const std::string & s) {
                         if (isdigit(s[i])) {
                             value = atof(&(s[i]));
                             object.insert(
-                                    std::pair<std::string, std::any>(key, value));
+                                    std::pair<std::string,
+                                std::any>(key, value));
                         } else {
                             if (s[i] == 'f') {
                                 std::string s_bool = "";
-                                while (s[i] != ',' && s[i] != '"' && s[i] != ' ') {
+                                while (s[i] != ',' && s[i] != '"'
+                                       && s[i] != ' ') {
                                     s_bool += s[i];
                                     ++i;
                                 }
                                 if (s_bool == "false") {
                                     value = false;
                                     object.insert(
-                                            std::pair<std::string, std::any>(key, value));
+                                            std::pair<std::string,
+                                        std::any>(key, value));
                                 }
                             } else {
                                 if (s[i] == 't') {
@@ -122,19 +125,22 @@ Json::Json(const std::string & s) {
                                     if (s_bool == "true") {
                                         value = true;
                                         object.insert(
-                                                std::pair<std::string, std::any>(key, value));
+                                                std::pair<std::string,
+                                            std::any>(key, value));
                                     }
                                 } else {
                                     if (s[i] == 'n') {
                                         std::string s_bool = "";
-                                        while (s[i] != ',' && s[i] != ' ' && s[i] != '"') {
+                                        while (s[i] != ',' && s[i] != ' '
+                                               && s[i] != '"') {
                                             s_bool += s[i];
                                             ++i;
                                         }
                                         if (s_bool == "null") {
                                             value = NULL;
                                             object.insert(
-                                                    std::pair<std::string, std::any>(key, value));
+                                                    std::pair<std::string,
+                                                std::any>(key, value));
                                         }
                                     }
                                 }
