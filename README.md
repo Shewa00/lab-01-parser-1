@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.com/ARAOvsepyan/lab-01-parser.svg?branch=master)](https://travis-ci.com/ARAOvsepyan/lab-01-parser) [![forthebadge](https://forthebadge.com/images/badges/made-with-c-plus-plus.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/made-by-Ara-Ovsepyan.svg)](https://forthebadge.com)
 
 # Задание 1
 Реализовать парсер данных в формате JSON.
